@@ -1,3 +1,5 @@
+/*.vue
+/**/*.vue
 /build/
 /config/
 /dist/
