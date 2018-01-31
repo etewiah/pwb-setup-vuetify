@@ -2,14 +2,19 @@
   <v-app>
     <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app>
       <v-list>
-        <v-list-tile value="true" v-for="(item, i) in items" :key="i">
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+
+
+          <template v-for="(item, index) in items">
+            <v-list-tile :href="item.href" :to="{name: item.href}">
+              <v-list-tile-action>
+                <v-icon light v-html="item.icon"></v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title v-html="item.text"></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app :clipped-left="clipped">
@@ -30,28 +35,18 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-
-
-
-        <h2>Click the button to get Random jokes</h2>
-        <button id="btn" class="" v-on:click="getJokes">Get Jokes</button>
-
-
-
-        <div v-for="joke in jokes" :key="joke.id">
-          <div class="col-md-4 cards">
-             <img src="https://placeimg.com/300/300/nature" class="img-responsive" alt="Random images placeholder">
-            <div>
-              <h3>{{ joke.id }}</h3>
-              <p>{{ joke.joke }}</p>
-              <p>{{ joke.category }}</p>
-            </div>
+      <h2>Click the button to get Random jokes</h2>
+      <button id="btn" class="" v-on:click="getJokes">Get Jokes</button>
+      <div v-for="joke in jokes" :key="joke.id">
+        <div class="col-md-4 cards">
+          <img src="https://placeimg.com/300/300/nature" class="img-responsive" alt="Random images placeholder">
+          <div>
+            <h3>{{ joke.id }}</h3>
+            <p>{{ joke.joke }}</p>
+            <p>{{ joke.category }}</p>
           </div>
         </div>
-
-
-
-
+      </div>
       <router-view/>
     </v-content>
     <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
@@ -79,9 +74,21 @@ export default {
       drawer: true,
       fixed: false,
       items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
+          icon: 'content_copy',
+          text: 'Home',
+          href: 'home',
+          router: true
+        },
+        {
+          icon: 'contacts',
+          text: 'Contacts',
+          href: 'contacts',
+          router: true
+        }, {
+          icon: 'bubble_chart',
+          title: 'Inspire'
+        }
+      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
