@@ -4,6 +4,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import axios from 'axios'
+import { store } from './store'
 
 // Vue.use(axios)
 

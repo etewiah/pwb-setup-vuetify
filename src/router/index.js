@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import ContactDetails from '@/components/ContactDetails'
+import CreateContact from '@/components/contacts/CreateContact'
 
 Vue.use(Router)
 
@@ -14,13 +15,13 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/contacts/create',
+      name: 'CreateContact',
+      component: CreateContact
     }, {
       path: '/contacts',
       name: 'contacts',
-      component: ContactDetails,
+      component: ContactDetails
     }
   ]
 })

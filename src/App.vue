@@ -2,19 +2,16 @@
   <v-app>
     <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app>
       <v-list>
-
-
-          <template v-for="(item, index) in items">
-            <v-list-tile :href="item.href" :to="{name: item.href}">
-              <v-list-tile-action>
-                <v-icon light v-html="item.icon"></v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title v-html="item.text"></v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </template>
-
+        <template v-for="(item, index) in items">
+          <v-list-tile :href="item.href" :to="{name: item.href}">
+            <v-list-tile-action>
+              <v-icon light v-html="item.icon"></v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title v-html="item.text"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app :clipped-left="clipped">
@@ -74,21 +71,24 @@ export default {
       drawer: true,
       fixed: false,
       items: [{
-          icon: 'content_copy',
-          text: 'Home',
-          href: 'home',
-          router: true
-        },
-        {
-          icon: 'contacts',
-          text: 'Contacts',
-          href: 'contacts',
-          router: true
-        }, {
-          icon: 'bubble_chart',
-          title: 'Inspire'
-        }
-      ],
+        icon: 'content_copy',
+        text: 'Home',
+        href: 'home',
+        router: true
+      }, {
+        icon: 'contacts',
+        text: 'Contacts',
+        href: 'contacts',
+        router: true
+      }, {
+        icon: 'contacts',
+        text: 'Create contact',
+        href: 'CreateContact',
+        router: true
+      }, {
+        icon: 'bubble_chart',
+        title: 'Inspire'
+      }],
       miniVariant: false,
       right: true,
       rightDrawer: false,
