@@ -1,3 +1,9 @@
+#About
+
+Created from vuetify pwa template:
+
+vue init vuetifyjs/pwa pwb-setup-vuetify
+
 # pwb-setup-vuetify
 
 > A Vue.js project

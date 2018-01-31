@@ -3,6 +3,9 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import axios from 'axios'
+
+// Vue.use(axios)
 
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',
@@ -20,5 +23,21 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  axios,
+
+  methods: {
+    getJokes() {
+      this.loading = true;
+      debugger;
+      axios.get("http://api.icndb.com/jokes/random/10")
+        .then((response) => {
+          this.loading = false;
+          this.jokes = response.data.value;
+        }, (error) => {
+          this.loading = false;
+        })
+    }
+  },
+  render: h => h(App),
+
 })
