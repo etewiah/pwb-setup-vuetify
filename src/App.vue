@@ -76,6 +76,11 @@ export default {
         href: 'home',
         router: true
       }, {
+        icon: 'pages',
+        text: 'Pages',
+        href: 'pages',
+        router: true
+      }, {
         icon: 'contacts',
         text: 'Contacts',
         href: 'contacts',
@@ -107,6 +112,9 @@ export default {
           this.loading = false;
         })
     }
+  },
+  mounted: function () {
+    this.$store.dispatch('LOAD_PROJECT_LIST')
   },
 }
 

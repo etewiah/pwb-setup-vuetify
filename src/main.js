@@ -4,7 +4,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import axios from 'axios'
-import { store } from './store'
+import store from './store'
 
 // Vue.use(axios)
 
@@ -25,11 +25,10 @@ new Vue({
   el: '#app',
   router,
   axios,
-
+  store,
   methods: {
     getJokes() {
       this.loading = true;
-      debugger;
       axios.get("http://api.icndb.com/jokes/random/10")
         .then((response) => {
           this.loading = false;
