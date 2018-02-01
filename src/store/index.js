@@ -5,10 +5,11 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    projects: []
+    pages: [],
+    currencies: []
   },
   actions: {
-    LOAD_PROJECT_LIST: function ({ commit }) {
+    loadSetupInfo: function ({ commit }) {
       axios.get('/api/v1/agency').then((response) => {
         commit('SET_PROJECT_LIST', { list: response.data })
       }, (err) => {
@@ -18,7 +19,8 @@ const store = new Vuex.Store({
   },
   mutations: {
     SET_PROJECT_LIST: (state, { list }) => {
-      state.projects = list.website.admin_page_links
+      state.pages = list.website.admin_page_links
+      state.currencies = list.setup.currencyFieldKeys
     }
   },
   getters: {

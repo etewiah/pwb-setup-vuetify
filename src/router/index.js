@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import ContactDetails from '@/components/ContactDetails'
 import CreateContact from '@/components/contacts/CreateContact'
 import PagesList from '@/components/PagesList'
+import CurrenciesList from '@/components/CurrenciesList'
 
 Vue.use(Router)
 
@@ -19,6 +20,10 @@ export default new Router({
       path: '/contacts/create',
       name: 'CreateContact',
       component: CreateContact
+    }, {
+      path: '/currencies',
+      name: 'currencies',
+      component: CurrenciesList
     }, {
       path: '/contacts',
       name: 'contacts',

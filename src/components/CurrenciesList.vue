@@ -8,14 +8,14 @@
       <v-flex xs12>
 
         <v-list two-line subheader>
-          <v-subheader inset>Pages</v-subheader>
-          <v-list-tile avatar v-for="item in pages" v-bind:key="item.title" @click="">
+          <v-subheader inset>Currencies</v-subheader>
+          <v-list-tile avatar v-for="item in currencies" v-bind:key="item.title" @click="">
             <v-list-tile-avatar>
               <v-icon v-bind:class="[item.iconClass]">{{ item.icon }}</v-icon>
             </v-list-tile-avatar>
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.slug }}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ item.link_path }}</v-list-tile-sub-title>
+              <v-list-tile-title>{{ item.labelTextTKey }}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ item.value }}</v-list-tile-sub-title>
             </v-list-tile-content>
             <v-list-tile-action>
               <v-btn icon ripple>
@@ -38,13 +38,12 @@
 export default {
   data() {
     return {
-      // pages: [],
       loading: true
     }
   },
   computed: {
-    pages() {
-      return this.$store.state.pages
+    currencies() {
+      return this.$store.state.currencies
     }
   },
   methods: {
