@@ -59,11 +59,6 @@ export default {
       drawer: true,
       fixed: false,
       items: [{
-        icon: 'content_copy',
-        text: 'Home',
-        href: 'home',
-        router: true
-      }, {
         icon: 'money',
         text: 'Currencies',
         href: 'currencies',
@@ -72,6 +67,11 @@ export default {
         icon: 'pages',
         text: 'Pages',
         href: 'pages',
+        router: true
+      }, {
+        icon: 'domain',
+        text: 'Properties',
+        href: 'properties',
         router: true
       }, {
         icon: 'contacts',
@@ -83,9 +83,6 @@ export default {
         text: 'Create contact',
         href: 'CreateContact',
         router: true
-      }, {
-        icon: 'bubble_chart',
-        title: 'Inspire'
       }],
       miniVariant: false,
       right: true,

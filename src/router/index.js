@@ -5,6 +5,8 @@ import ContactDetails from '@/components/ContactDetails'
 import CreateContact from '@/components/contacts/CreateContact'
 import PagesList from '@/components/PagesList'
 import CurrenciesList from '@/components/CurrenciesList'
+import PropertiesList from '@/components/properties/PropertiesList'
+
 
 Vue.use(Router)
 
@@ -32,6 +34,10 @@ export default new Router({
       path: '/pages',
       name: 'pages',
       component: PagesList
+    }, {
+      path: '/properties',
+      name: 'properties',
+      component: PropertiesList
     }
   ]
 })
