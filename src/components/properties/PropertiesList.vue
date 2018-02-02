@@ -9,7 +9,9 @@
 
         <v-list two-line subheader>
           <v-subheader inset>properties</v-subheader>
-          <v-list-tile avatar v-for="item in properties" v-bind:key="item.title" @click="">
+        <template v-for="(item, index) in properties">
+<router-link :to="{name: 'propertyDetails', params: {id: item.id}}">About</router-link>
+          <v-list-tile :to="{name: 'propertyDetails', params: {id: item.id}}" >
             <v-list-tile-avatar>
               <v-icon v-bind:class="[item.iconClass]">{{ item.icon }}</v-icon>
             </v-list-tile-avatar>
@@ -23,6 +25,7 @@
               </v-btn>
             </v-list-tile-action>
           </v-list-tile>
+        </template>
         </v-list>
 
       </v-flex>

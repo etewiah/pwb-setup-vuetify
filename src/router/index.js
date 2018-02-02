@@ -6,6 +6,7 @@ import CreateContact from '@/components/contacts/CreateContact'
 import PagesList from '@/components/PagesList'
 import CurrenciesList from '@/components/CurrenciesList'
 import PropertiesList from '@/components/properties/PropertiesList'
+import PropertyDetails from '@/components/properties/PropertyDetails'
 
 
 Vue.use(Router)
@@ -38,6 +39,16 @@ export default new Router({
       path: '/properties',
       name: 'properties',
       component: PropertiesList
-    }
+    }, {
+      path: '/properties/:id',
+      name: 'propertyDetails',
+      components: {
+        default: PropertyDetails,
+        detail: PropertiesList
+      },
+      props: {
+        detail: true
+      }
+    },
   ]
 })

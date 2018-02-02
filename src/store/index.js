@@ -5,6 +5,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
+    property: {
+      attributes: {}
+    },
     properties: [],
     pages: [],
     currencies: []
@@ -28,9 +31,25 @@ const store = new Vuex.Store({
       }, (err) => {
         console.log(err)
       })
+    },
+    loadProperty: function({ commit }, propertyId) {
+      let apiUrl = '/api/v1/properties/' + propertyId
+      axios.get(apiUrl, {
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'Accept': 'application/vnd.api+json'
+        }
+      }).then((response) => {
+        commit('setProperty', { list: response.data })
+      }, (err) => {
+        console.log(err)
+      })
     }
   },
   mutations: {
+    setProperty: (state, { list }) => {
+      state.property = list.data
+    },
     setProperties: (state, { list }) => {
       state.properties = list.data
     },
