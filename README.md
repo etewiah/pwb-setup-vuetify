@@ -10,6 +10,8 @@ vue init vuetifyjs/pwa pwb-setup-vuetify
 
 ## Build Setup
 
+First of all you will need to copy "config/index-default.js" to "config/index.js"
+
 ``` bash
 # install dependencies
 npm install

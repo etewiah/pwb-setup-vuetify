@@ -6,9 +6,15 @@
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-
         <v-list two-line subheader>
           <v-subheader inset>Currencies</v-subheader>
+          <form>
+            <v-layout row>
+              <v-flex xs12 sm6 offset-sm3>
+                <v-text-field name="title" label="Title" id="title" v-model="title" required></v-text-field>
+              </v-flex>
+            </v-layout>
+          </form>
           <v-list-tile avatar v-for="item in currencies" v-bind:key="item.title" @click="">
             <v-list-tile-avatar>
               <v-icon v-bind:class="[item.iconClass]">{{ item.icon }}</v-icon>
@@ -24,12 +30,11 @@
             </v-list-tile-action>
           </v-list-tile>
         </v-list>
-
       </v-flex>
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12 class="text-xs-center">
-        <p>Our awesome pages!</p>
+        <p></p>
       </v-flex>
     </v-layout>
   </v-container>
@@ -46,8 +51,7 @@ export default {
       return this.$store.state.currencies
     }
   },
-  methods: {
-  }
+  methods: {}
 }
 
 </script>
