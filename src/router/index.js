@@ -7,6 +7,7 @@ import PagesList from '@/components/PagesList'
 import CurrenciesList from '@/components/CurrenciesList'
 import PropertiesList from '@/components/properties/PropertiesList'
 import PropertyDetails from '@/components/properties/PropertyDetails'
+import SingleProperty from '@/components/properties/SingleProperty'
 
 
 Vue.use(Router)
@@ -49,6 +50,17 @@ export default new Router({
       props: {
         detail: true
       }
-    },
+    }, {
+      path: '/property/:id',
+      name: 'singleProperty',
+      component: SingleProperty,
+      children: [{
+        // UserProfile will be rendered inside User's <router-view>
+        // when /user/:id/profile is matched
+        name: 'singlePropertyTab',
+        path: ':tabName',
+        component: PropertyDetails
+      }]
+    }
   ]
 })

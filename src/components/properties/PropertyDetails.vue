@@ -1,29 +1,20 @@
 <template>
   <v-container>
-    <v-layout>
-      <v-flex xs12 class="text-xs-center">
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap class="mt-2">
-      <v-flex xs12>
-
-details:  {{ property.attributes.title }}
-
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap class="mt-2">
-      <v-flex xs12 class="text-xs-center">
-      </v-flex>
-    </v-layout>
+        details: {{ property.attributes.title }}
   </v-container>
 </template>
 <script>
 export default {
   data() {
     return {
+      active: null,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
   },
   computed: {
+    tabs() {
+      return this.$store.state.propertyTabs
+    },
     property() {
       return this.$store.state.property
     }

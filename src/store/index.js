@@ -10,7 +10,23 @@ const store = new Vuex.Store({
     },
     properties: [],
     pages: [],
-    currencies: []
+    currencies: [],
+    propertyTabs: [{
+        name: "first",
+        id: "3"
+      }, {
+        name: "tt",
+        id: "4"
+      }, {
+        name: "third",
+        id: "6"
+      },
+      {
+        name: "fsdfdstt",
+        id: "1"
+      }
+    ],
+    tabs: ['tab-1', 'tab-2', 'tab-3'],
   },
   actions: {
     loadSetupInfo: function({ commit }) {
