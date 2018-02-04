@@ -1,24 +1,17 @@
 <template>
   <v-container>
     details: {{ property.attributes.title }}
-    <!-- basic -->
-    <keep-alive>
-      <component :is="propertyDetailsComponent"></component>
-    </keep-alive>
   </v-container>
 </template>
 <script>
-import GeneralPropertyDetails from '@/components/properties/details/GeneralPropertyDetails'
 export default {
   data() {
-    return {}
-  },
-  components: {
-    GeneralPropertyDetails
+    return {
+    }
   },
   computed: {
-    propertyDetailsComponent() {
-      return 'GeneralPropertyDetails'
+    tabs() {
+      return this.$store.state.propertyTabs
     },
     property() {
       return this.$store.state.property
