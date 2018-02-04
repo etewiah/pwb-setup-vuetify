@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    details: {{ property.attributes.title }}
     <!-- basic -->
     <keep-alive>
       <component :is="propertyDetailsComponent"></component>
@@ -9,16 +8,20 @@
 </template>
 <script>
 import GeneralPropertyDetails from '@/components/properties/details/GeneralPropertyDetails'
+import TextPropertyDetails from '@/components/properties/details/TextPropertyDetails'
 export default {
   data() {
     return {}
   },
   components: {
-    GeneralPropertyDetails
+    GeneralPropertyDetails,
+    TextPropertyDetails
   },
   computed: {
     propertyDetailsComponent() {
-      return 'GeneralPropertyDetails'
+      let currentTabName = this.$route.params["tabName"]
+      let currentPropertyTab = this.findBy(this.$store.state.propertyTabs, currentTabName, 'tabValue')
+      return currentPropertyTab[0].componentName
     },
     property() {
       return this.$store.state.property
@@ -28,8 +31,17 @@ export default {
     this.$store.dispatch('loadProperty', this.$route.params["id"])
   },
   methods: {
-
-  }
+    findBy: function(list, value, column) {
+      return list.filter(function(item) {
+        return item[column].includes(value)
+      })
+    },
+    orderBy: function(list, order, column) {
+      return list.sort(function(a, b) {
+        return order * (a[column] - b[column])
+      })
+    }
+  },
 }
 
 </script>

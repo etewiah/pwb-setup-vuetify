@@ -12,18 +12,32 @@ const store = new Vuex.Store({
     pages: [],
     currencies: [],
     propertyTabs: [{
-        name: "first",
-        id: "3"
+        tabValue: "general",
+        tabTitleKey: "propertySections.general",
+        componentName: "GeneralPropertyDetails",
       }, {
-        name: "tt",
-        id: "4"
+        tabValue: "text",
+        tabTitleKey: "propertySections.text",
+        componentName: "TextPropertyDetails",
       }, {
-        name: "third",
-        id: "6"
-      },
-      {
-        name: "fsdfdstt",
-        id: "1"
+        tabValue: "venta",
+        tabTitleKey: "propertySections.sale",
+        componentName: "GeneralPropertyDetails",
+      }, {
+        tabValue: "situacion",
+        tabTitleKey: "propertySections.location",
+        componentName: "GeneralPropertyDetails",
+      }, {
+        //   tabValue: "descripcion",
+        //   tabTitleKey: "propertySections.description"
+        // }, {
+        tabValue: "extras",
+        tabTitleKey: "propertySections.extras",
+        componentName: "GeneralPropertyDetails",
+      }, {
+        tabValue: "fotos",
+        tabTitleKey: "propertySections.photos",
+        componentName: "GeneralPropertyDetails",
       }
     ],
     tabs: ['tab-1', 'tab-2', 'tab-3'],

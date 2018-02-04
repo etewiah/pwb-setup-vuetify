@@ -3,9 +3,9 @@
 
     <v-tabs>
       <v-tabs-bar class="cyan" dark>
-        <template v-for="(tab, index) in tabs">
-          <v-tabs-item :to="{name: 'singlePropertyTab', params: {tabName: tab.name}}" ripple>
-            Item {{ tab.name }}
+        <template v-for="(tab, index) in propertyTabs">
+          <v-tabs-item :to="{name: 'singlePropertyTab', params: {tabName: tab.tabValue}}" ripple>
+            {{ tab.tabValue }}
           </v-tabs-item>
         </template>
         <v-tabs-slider color="yellow"></v-tabs-slider>
@@ -28,20 +28,12 @@ export default {
     return {
       active: "dd",
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      tabs: [{
-        name: "first",
-        id: "3"
-      }, {
-        name: "tt",
-        id: "4"
-      }, {
-        name: "third",
-        id: "6"
-      }],
-
     }
   },
   computed: {
+    propertyTabs() {
+      return this.$store.state.propertyTabs
+    },
     property() {
       return this.$store.state.property
     }
