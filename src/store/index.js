@@ -28,12 +28,9 @@ const store = new Vuex.Store({
         tabTitleKey: "propertySections.location",
         componentName: "GeneralPropertyDetails",
       }, {
-        //   tabValue: "descripcion",
-        //   tabTitleKey: "propertySections.description"
-        // }, {
         tabValue: "extras",
         tabTitleKey: "propertySections.extras",
-        componentName: "GeneralPropertyDetails",
+        componentName: "ExtrasPropertyDetails",
       }, {
         tabValue: "fotos",
         tabTitleKey: "propertySections.photos",

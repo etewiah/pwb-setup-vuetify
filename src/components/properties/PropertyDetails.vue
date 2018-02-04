@@ -9,13 +9,15 @@
 <script>
 import GeneralPropertyDetails from '@/components/properties/details/GeneralPropertyDetails'
 import TextPropertyDetails from '@/components/properties/details/TextPropertyDetails'
+import ExtrasPropertyDetails from '@/components/properties/details/ExtrasPropertyDetails'
 export default {
   data() {
     return {}
   },
   components: {
     GeneralPropertyDetails,
-    TextPropertyDetails
+    TextPropertyDetails,
+    ExtrasPropertyDetails
   },
   computed: {
     propertyDetailsComponent() {

@@ -35,23 +35,19 @@ export default new Router({
     }, {
       path: '/pages',
       name: 'pages',
-      component: PagesList
+      components: {
+        default: PagesList,
+        detail: PagesList
+      },
+      props: {
+        detail: true
+      }
     }, {
       path: '/properties',
       name: 'properties',
       component: PropertiesList
     }, {
       path: '/properties/:id',
-      name: 'propertyDetails',
-      components: {
-        default: PropertyDetails,
-        detail: PropertiesList
-      },
-      props: {
-        detail: true
-      }
-    }, {
-      path: '/property/:id',
       name: 'singleProperty',
       component: SingleProperty,
       children: [{
