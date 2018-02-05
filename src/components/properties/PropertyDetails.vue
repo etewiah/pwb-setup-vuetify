@@ -2,7 +2,7 @@
   <v-container>
     <!-- basic -->
     <keep-alive>
-      <component :is="propertyDetailsComponent"></component>
+      <component :is="propertyDetailsComponent" v-bind:property="property"></component>
     </keep-alive>
   </v-container>
 </template>
@@ -26,7 +26,7 @@ export default {
       return currentPropertyTab[0].componentName
     },
     property() {
-      return this.$store.state.property
+      return this.$store.state.currentProperty
     }
   },
   mounted: function() {

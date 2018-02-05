@@ -5,9 +5,10 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    property: {
+    currentProperty: {
       attributes: {}
     },
+    newProperty: "",
     properties: [],
     pages: [],
     currencies: [],
@@ -71,11 +72,32 @@ const store = new Vuex.Store({
       }, (err) => {
         console.log(err)
       })
-    }
+    },
+    addProperty ({ commit, state }) {
+      if (!state.newProperty) {
+        // do not add empty properties
+        return
+      }
+      const property = {
+        title: state.newProperty,
+        completed: false,
+        id: randomId()
+      }
+      axios.post('/properties', property).then(_ => {
+        commit('setNewProperty', property)
+      })
+    },
+
   },
   mutations: {
+    setNewProperty (state, todoObject) {
+      state.todos.push(todoObject)
+    },
+    clearNewProperty (state) {
+      state.newProperty = ''
+    },
     setProperty: (state, { list }) => {
-      state.property = list.data
+      state.currentProperty = list.data
     },
     setProperties: (state, { list }) => {
       state.properties = list.data

@@ -15,16 +15,11 @@ v-layout
 export default {
 
   computed: {
-    property() {
-      return this.$store.state.property
-    },
     isEdit() {
       return !!this.id
     }
   },
   mounted: function() {
-    this.$store.dispatch('loadProperty', this.$route.params["id"])
-    // this.fetch()
   },
 
   data() {

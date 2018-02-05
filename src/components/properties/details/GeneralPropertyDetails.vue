@@ -5,6 +5,16 @@
       <v-flex xs12>
         <form @submit.prevent="onUpdateProperty">
           <v-layout row>
+            <v-flex xs3 sm3>
+              <v-card flat>
+                <v-card-text>
+                  <v-subheader>Visible on web:</v-subheader>
+                  <v-switch v-bind:label="`${property.attributes.visible}`" v-model="property.attributes.visible"></v-switch>
+                </v-card-text>
+              </v-card>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-text-field name="title" label="Title" id="title" v-model="property.attributes.title" required></v-text-field>
             </v-flex>
@@ -21,13 +31,23 @@
 </template>
 <script>
 export default {
+  props: ["property"],
   data() {
-    return {}
+    return {
+      visibilityInputFields: [{
+        labelTextTKey: "fieldLabels.visibleOnWeb",
+        tooltipTextTKey: "toolTips.visible",
+        fieldName: "visible",
+        fieldType: "simpleSelect",
+        fieldDbType: "boolean",
+      }],
+
+    }
   },
   computed: {
-    property() {
-      return this.$store.state.property
-    },
+    // property() {
+    //   return this.$store.state.currentProperty
+    // },
     formIsValid() {
       return this.title !== '' &&
         this.location !== '' &&
@@ -36,7 +56,7 @@ export default {
     },
   },
   mounted: function() {
-    this.$store.dispatch('loadProperty', this.$route.params["id"])
+    // this.$store.dispatch('loadProperty', this.$route.params["id"])
   },
   methods: {
     onUpdateProperty() {
