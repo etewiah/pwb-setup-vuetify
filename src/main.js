@@ -7,6 +7,16 @@ import axios from 'axios'
 import store from './store'
 import VueI18n from 'vue-i18n'
 
+
+
+// let token = document.getElementsByName('csrf-token')[0].getAttribute('content')
+
+// below needed for rails to recognise request.xhr?
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// axios.defaults.headers.common['X-CSRF-Token'] = token
+// axios.defaults.headers.common['Accept'] = 'application/json'
+
+
 // import validator from 'indicative'
 import validator from 'Validator'
 global.validator = validator

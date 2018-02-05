@@ -13,67 +13,85 @@ const store = new Vuex.Store({
     pages: [],
     currencies: [],
     propertyTabs: [{
-        tabValue: "general",
-        tabTitleKey: "propertySections.general",
-        componentName: "GeneralPropertyDetails",
-      }, {
-        tabValue: "text",
-        tabTitleKey: "propertySections.text",
-        componentName: "TextPropertyDetails",
-      }, {
-        tabValue: "venta",
-        tabTitleKey: "propertySections.sale",
-        componentName: "GeneralPropertyDetails",
-      }, {
-        tabValue: "situacion",
-        tabTitleKey: "propertySections.location",
-        componentName: "GeneralPropertyDetails",
-      }, {
-        tabValue: "extras",
-        tabTitleKey: "propertySections.extras",
-        componentName: "ExtrasPropertyDetails",
-      }, {
-        tabValue: "fotos",
-        tabTitleKey: "propertySections.photos",
-        componentName: "GeneralPropertyDetails",
-      }
-    ],
+      tabValue: "general",
+      tabTitleKey: "propertySections.general",
+      componentName: "GeneralPropertyDetails",
+    }, {
+      tabValue: "text",
+      tabTitleKey: "propertySections.text",
+      componentName: "TextPropertyDetails",
+    }, {
+      tabValue: "venta",
+      tabTitleKey: "propertySections.sale",
+      componentName: "GeneralPropertyDetails",
+    }, {
+      tabValue: "situacion",
+      tabTitleKey: "propertySections.location",
+      componentName: "GeneralPropertyDetails",
+    }, {
+      tabValue: "extras",
+      tabTitleKey: "propertySections.extras",
+      componentName: "ExtrasPropertyDetails",
+    }, {
+      tabValue: "fotos",
+      tabTitleKey: "propertySections.photos",
+      componentName: "GeneralPropertyDetails",
+    }],
     tabs: ['tab-1', 'tab-2', 'tab-3'],
   },
   actions: {
     loadSetupInfo: function({ commit }) {
-      axios.get('/api/v1/agency').then((response) => {
-        commit('setProjectList', { list: response.data })
+      axios.get('/api/v2/agency').then((response) => {
+        let token = response.headers["x-csrf-token"]
+        axios.defaults.headers.common['X-CSRF-Token'] = token
+        commit('setProjectList', { result: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     loadProperties: function({ commit }) {
-      axios.get('/api/v1/lite-properties', {
+      axios.get('/api/v2/lite-properties', {
         headers: {
           'Content-Type': 'application/vnd.api+json',
           'Accept': 'application/vnd.api+json'
         }
       }).then((response) => {
-        commit('setProperties', { list: response.data })
+        commit('setProperties', { result: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     loadProperty: function({ commit }, propertyId) {
-      let apiUrl = '/api/v1/properties/' + propertyId
+      let apiUrl = '/api/v2/properties/' + propertyId
       axios.get(apiUrl, {
         headers: {
           'Content-Type': 'application/vnd.api+json',
           'Accept': 'application/vnd.api+json'
         }
       }).then((response) => {
-        commit('setProperty', { list: response.data })
+        commit('setCurrentProperty', { result: response.data })
       }, (err) => {
         console.log(err)
       })
     },
-    addProperty ({ commit, state }) {
+    updateProperty({ commit, state }) {
+      let apiUrl = '/api/v2/properties/' + state.currentProperty.id
+      axios.put(apiUrl, {
+        data: {
+          id: state.currentProperty.id,
+          type: state.currentProperty.type,
+          attributes: state.currentProperty.attributes
+        }
+      }, {
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'Accept': 'application/vnd.api+json'
+        }
+      }).then(response => {
+        commit('setCurrentProperty', { result: response.data })
+      })
+    },
+    addProperty({ commit, state }) {
       if (!state.newProperty) {
         // do not add empty properties
         return
@@ -90,21 +108,21 @@ const store = new Vuex.Store({
 
   },
   mutations: {
-    setNewProperty (state, todoObject) {
+    setNewProperty(state, todoObject) {
       state.todos.push(todoObject)
     },
-    clearNewProperty (state) {
+    clearNewProperty(state) {
       state.newProperty = ''
     },
-    setProperty: (state, { list }) => {
-      state.currentProperty = list.data
+    setCurrentProperty: (state, { result }) => {
+      state.currentProperty = result
     },
-    setProperties: (state, { list }) => {
-      state.properties = list.data
+    setProperties: (state, { result }) => {
+      state.properties = result.data
     },
-    setProjectList: (state, { list }) => {
-      state.pages = list.website.admin_page_links
-      state.currencies = list.setup.currencyFieldKeys
+    setProjectList: (state, { result }) => {
+      state.pages = result.website.admin_page_links
+      state.currencies = result.setup.currencyFieldKeys
     }
   },
   getters: {

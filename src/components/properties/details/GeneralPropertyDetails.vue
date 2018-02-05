@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    details: {{ property.attributes.title }}
+    details: {{ property.title }}
     <v-layout row>
       <v-flex xs12>
         <form @submit.prevent="onUpdateProperty">
@@ -9,14 +9,14 @@
               <v-card flat>
                 <v-card-text>
                   <v-subheader>Visible on web:</v-subheader>
-                  <v-switch v-bind:label="`${property.attributes.visible}`" v-model="property.attributes.visible"></v-switch>
+                  <v-switch v-bind:label="`${property.visible}`" v-model="property.visible"></v-switch>
                 </v-card-text>
               </v-card>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field name="title" label="Title" id="title" v-model="property.attributes.title" required></v-text-field>
+              <v-text-field name="title" label="Title" id="title" v-model="property.title" required></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -60,18 +60,18 @@ export default {
   },
   methods: {
     onUpdateProperty() {
-      if (!this.formIsValid) {
-        return
-      }
-      const meetupData = {
-        title: this.title,
-        location: this.location,
-        imageUrl: this.imageUrl,
-        description: this.description,
-        date: this.submittableDateTime
-      }
-      debugger
-      // this.$store.dispatch('createMeetup', meetupData)
+      // if (!this.formIsValid) {
+      //   return
+      // }
+      // const meetupData = {
+      //   title: this.title,
+      //   location: this.location,
+      //   imageUrl: this.imageUrl,
+      //   description: this.description,
+      //   date: this.submittableDateTime
+      // }
+      // debugger
+      this.$store.dispatch('updateProperty')
       // this.$router.push('/meetups')
     }
 
