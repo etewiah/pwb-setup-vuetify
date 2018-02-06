@@ -34,9 +34,9 @@ export default {
     propertyTabs() {
       return this.$store.state.propertyTabs
     },
-    property() {
-      return this.$store.state.property
-    }
+    // property() {
+    //   return this.$store.state.property
+    // }
   },
   mounted: function() {
     this.$store.dispatch('loadProperty', this.$route.params["id"])

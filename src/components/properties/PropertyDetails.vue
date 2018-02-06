@@ -2,7 +2,7 @@
   <v-container>
     <!-- basic -->
     <keep-alive>
-      <component :is="propertyDetailsComponent" v-bind:property="property"></component>
+      <component :is="propertyDetailsComponent" v-bind:property="currentProperty"></component>
     </keep-alive>
   </v-container>
 </template>
@@ -25,8 +25,8 @@ export default {
       let currentPropertyTab = this.findBy(this.$store.state.propertyTabs, currentTabName, 'tabValue')
       return currentPropertyTab[0].componentName
     },
-    property() {
-      return this.$store.state.currentProperty
+    currentProperty() {
+      return this.$store.state.propertiesStore.currentProperty
     }
   },
   mounted: function() {

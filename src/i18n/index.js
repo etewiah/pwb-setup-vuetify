@@ -20,5 +20,6 @@ const i18n = new VueI18n({
   messages
 })
 
-debugger
+
+// debugger
 export default i18n
