@@ -2,8 +2,41 @@
   <v-app>
     <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app>
       <v-list>
-        <template v-for="(item, index) in items">
-          <v-list-tile :href="item.href" :to="{name: item.href}">
+        <template v-for="(item, index) in mainNavItems">
+          <template v-if="item.isGroupHeader">
+            <v-list-group :value="item.active" v-bind:key="item.title">
+              <v-list-tile slot="item" @click="">
+                <v-list-tile-action>
+                  <v-icon>{{ item.action }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-icon>keyboard_arrow_down</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-list-tile v-for="subItem in item.items" v-bind:key="subItem.title"
+              :href="subItem.href" :to="{name: subItem.href}">
+
+            <v-list-tile-action>
+              <v-icon light v-html="subItem.icon"></v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title v-html="subItem.text"></v-list-tile-title>
+            </v-list-tile-content>
+
+
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-icon>{{ subItem.action }}</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+            </v-list-group>
+          </template>
+          <v-list-tile v-else :href="item.href" :to="{name: item.href}">
             <v-list-tile-action>
               <v-icon light v-html="item.icon"></v-icon>
             </v-list-tile-action>
@@ -58,7 +91,14 @@ export default {
       clipped: false,
       drawer: true,
       fixed: false,
-      items: [{
+      mainNavItems: [{
+        action: 'local_activity',
+        title: 'Attractions',
+        isGroupHeader: true,
+        items: [
+          { title: 'List Item' }
+        ]
+      }, {
         icon: 'money',
         text: 'Currencies',
         href: 'currencies',
@@ -68,6 +108,21 @@ export default {
         text: 'Pages',
         href: 'pages',
         router: true
+      }, {
+        action: 'local_activity',
+        title: 'Properties',
+        isGroupHeader: true,
+        items: [{
+          icon: 'domain',
+          text: 'Properties List',
+          href: 'properties',
+          router: true
+        }, {
+          icon: 'domain',
+          text: 'Properties Translations',
+          href: 'properties',
+          router: true
+        }]
       }, {
         icon: 'domain',
         text: 'Properties',
@@ -91,9 +146,8 @@ export default {
     }
   },
   name: 'App',
-  methods: {
-  },
-  mounted: function () {
+  methods: {},
+  mounted: function() {
     this.$store.dispatch('loadSetupInfo')
   },
 }

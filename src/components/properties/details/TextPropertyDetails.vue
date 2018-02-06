@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    details: {{ property.attributes.title }}
+    details: {{ property.title }}
   </v-container>
 </template>
 <script>

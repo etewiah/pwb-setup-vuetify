@@ -44,13 +44,13 @@ const store = new Vuex.Store({
       axios.get('/api/v2/agency').then((response) => {
         let token = response.headers["x-csrf-token"]
         axios.defaults.headers.common['X-CSRF-Token'] = token
-        commit('setProjectList', { result: response.data })
+        commit('setSiteData', { result: response.data })
       }, (err) => {
         console.log(err)
       })
     },
     loadProperties: function({ commit }) {
-      axios.get('/api/v2/lite-properties', {
+      axios.get('/api/v2/properties', {
         headers: {
           'Content-Type': 'application/vnd.api+json',
           'Accept': 'application/vnd.api+json'
@@ -77,11 +77,7 @@ const store = new Vuex.Store({
     updateProperty({ commit, state }) {
       let apiUrl = '/api/v2/properties/' + state.currentProperty.id
       axios.put(apiUrl, {
-        data: {
-          id: state.currentProperty.id,
-          type: state.currentProperty.type,
-          attributes: state.currentProperty.attributes
-        }
+        property: state.currentProperty
       }, {
         headers: {
           'Content-Type': 'application/vnd.api+json',
@@ -118,9 +114,9 @@ const store = new Vuex.Store({
       state.currentProperty = result
     },
     setProperties: (state, { result }) => {
-      state.properties = result.data
+      state.properties = result
     },
-    setProjectList: (state, { result }) => {
+    setSiteData: (state, { result }) => {
       state.pages = result.website.admin_page_links
       state.currencies = result.setup.currencyFieldKeys
     }
