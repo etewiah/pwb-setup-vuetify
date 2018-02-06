@@ -54,6 +54,7 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn>
+      {{ $t('Search') }}
       {{ $t('message.hello', { msg: 'hello' }) }}
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
