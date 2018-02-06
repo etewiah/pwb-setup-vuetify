@@ -16,17 +16,13 @@
                   <v-icon>keyboard_arrow_down</v-icon>
                 </v-list-tile-action>
               </v-list-tile>
-              <v-list-tile v-for="subItem in item.items" v-bind:key="subItem.title"
-              :href="subItem.href" :to="{name: subItem.href}">
-
-            <v-list-tile-action>
-              <v-icon light v-html="subItem.icon"></v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title v-html="subItem.text"></v-list-tile-title>
-            </v-list-tile-content>
-
-
+              <v-list-tile v-for="subItem in item.items" v-bind:key="subItem.title" :href="subItem.href" :to="{name: subItem.href}">
+                <v-list-tile-action>
+                  <v-icon light v-html="subItem.icon"></v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title v-html="subItem.text"></v-list-tile-title>
+                </v-list-tile-content>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
                 </v-list-tile-content>
@@ -47,7 +43,7 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app :clipped-left="clipped">
+    <v-toolbar app :clipped-left="clipped" fixed dark :class="theme">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
@@ -58,25 +54,42 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn>
+      {{ $t('message.hello', { msg: 'hello' }) }}
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
-      </v-btn>
+      <v-menu offset-y>
+        <v-btn icon dark slot="activator">
+          <v-icon dark>language</v-icon>
+        </v-btn>
+        <v-list>
+          <v-list-tile v-for="lang in locales" :key="lang" @mouseover.native="changeLocale(lang)">
+            <v-list-tile-title>
+              {{lang}}
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+
+
+
+      <v-menu offset-y>
+        <v-btn icon dark slot="activator">
+          <v-icon dark>format_paint</v-icon>
+        </v-btn>
+        <v-list>
+          <v-list-tile v-for="n in colors" :key="n" :class="n" @mouseover.native="theme = n">
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+      <v-menu offset-y>
+        <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+          <v-icon dark>language</v-icon>
+        </v-btn>
+      </v-menu>
     </v-toolbar>
     <v-content>
       <router-view/>
     </v-content>
-    <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
@@ -87,7 +100,10 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      jokes: [],
+      theme: 'primary',
+      mini: false,
+      locales: ['en-US', 'zh-CN', 'es-ES'],
+      colors: ['blue', 'green', 'purple', 'red'],
       clipped: false,
       drawer: true,
       fixed: false,
@@ -146,7 +162,12 @@ export default {
     }
   },
   name: 'App',
-  methods: {},
+  methods: {
+    changeLocale(to) {
+      global.helper.ls.set('locale', to)
+      this.$i18n.locale = to
+    },
+  },
   mounted: function() {
     this.$store.dispatch('loadSetupInfo')
   },

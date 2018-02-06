@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import helper from './helper'
+global.helper = helper
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
