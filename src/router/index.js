@@ -60,8 +60,16 @@ export default new Router({
         name: 'singleProperty',
         component: SingleProperty,
         children: [{
-          // UserProfile will be rendered inside User's <router-view>
-          // when /user/:id/profile is matched
+          path: '',
+          redirect: to => {
+            const { hash, params, query } = to
+            // This will not trigger if I route to 'singleProperty' within app
+            return { name: 'singlePropertyTab', params: {tabName: 'general', id: params.id} }
+            // if (query.to === 'foo') {
+            //   return { path: '/foo', query: null }
+            // }
+          } // redirect: { name: 'singlePropertyTab', params: {tabName: 'general'} }
+        }, {
           name: 'singlePropertyTab',
           path: ':tabName',
           component: PropertyDetails
