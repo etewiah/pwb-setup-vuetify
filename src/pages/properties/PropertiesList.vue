@@ -27,10 +27,6 @@
         </v-list>
       </v-flex>
     </v-layout>
-    <v-layout row wrap class="mt-2">
-      <v-flex xs12 class="text-xs-center">
-      </v-flex>
-    </v-layout>
   </v-container>
 </template>
 <script>

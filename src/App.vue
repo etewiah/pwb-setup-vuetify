@@ -114,13 +114,13 @@ export default {
         isGroupHeader: true,
         items: [{
           icon: 'domain',
-          text: 'Properties List',
-          href: 'properties',
+          text: 'List',
+          href: 'propertiesList',
           router: true
         }, {
           icon: 'domain',
-          text: 'Properties Translations',
-          href: 'properties',
+          text: 'New Property',
+          href: 'newProperty',
           router: true
         }]
       }, {
