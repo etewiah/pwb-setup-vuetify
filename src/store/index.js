@@ -2,42 +2,19 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import propertiesStore from './modules/properties'
+import navigationStore from './modules/navigation'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    propertiesStore
+    propertiesStore,
+    navigationStore
   },
   state: {
     newProperty: "",
     pages: [],
     currencies: [],
-    propertyTabs: [{
-      tabValue: "general",
-      tabTitleKey: "propertySections.general",
-      componentName: "GeneralPropertyDetails",
-    }, {
-      tabValue: "text",
-      tabTitleKey: "propertySections.text",
-      componentName: "TextPropertyDetails",
-    }, {
-      tabValue: "venta",
-      tabTitleKey: "propertySections.sale",
-      componentName: "GeneralPropertyDetails",
-    }, {
-      tabValue: "situacion",
-      tabTitleKey: "propertySections.location",
-      componentName: "GeneralPropertyDetails",
-    }, {
-      tabValue: "extras",
-      tabTitleKey: "propertySections.extras",
-      componentName: "ExtrasPropertyDetails",
-    }, {
-      tabValue: "fotos",
-      tabTitleKey: "propertySections.photos",
-      componentName: "GeneralPropertyDetails",
-    }],
-    tabs: ['tab-1', 'tab-2', 'tab-3'],
+    // tabs: ['tab-1', 'tab-2', 'tab-3'],
   },
   actions: {
     loadSetupInfo: function({ commit }) {

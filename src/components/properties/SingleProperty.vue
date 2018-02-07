@@ -5,7 +5,7 @@
       <v-tabs-bar class="cyan" dark>
         <template v-for="(tab, index) in propertyTabs">
           <v-tabs-item :to="{name: 'singlePropertyTab', params: {tabName: tab.tabValue}}" ripple>
-            {{ tab.tabValue }}
+            {{ $t(tab.tabTitleKey) }}
           </v-tabs-item>
         </template>
         <v-tabs-slider color="yellow"></v-tabs-slider>
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     propertyTabs() {
-      return this.$store.state.propertyTabs
+      return this.$store.state.navigationStore.propertyTabs
     },
     // property() {
     //   return this.$store.state.property

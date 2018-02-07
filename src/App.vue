@@ -10,7 +10,8 @@
                   <v-icon>{{ item.action }}</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                  <v-list-tile-title>{{ item.title }} {{ $t(item.tabTitleKey) }}
+                  </v-list-tile-title>
                 </v-list-tile-content>
                 <v-list-tile-action>
                   <v-icon>keyboard_arrow_down</v-icon>
@@ -37,7 +38,9 @@
               <v-icon light v-html="item.icon"></v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title v-html="item.text"></v-list-tile-title>
+              <v-list-tile-title>
+                {{ item.title }} {{ $t(item.tabTitleKey) }}
+              </v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </template>
@@ -54,9 +57,6 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn>
-      {{ $t('Search') }}
-
-       {{ $t('pages.aboutUs') }}
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-menu offset-y>
@@ -97,6 +97,11 @@
 <script>
 import axios from 'axios'
 export default {
+  computed: {
+    mainNavItems() {
+      return this.$store.state.navigationStore.mainNavItems
+    },
+  },
   data() {
     return {
       theme: 'primary',
@@ -106,54 +111,6 @@ export default {
       clipped: false,
       drawer: true,
       fixed: false,
-      mainNavItems: [{
-        action: 'local_activity',
-        title: 'Attractions',
-        isGroupHeader: true,
-        items: [
-          { title: 'List Item' }
-        ]
-      }, {
-        icon: 'money',
-        text: 'Currencies',
-        href: 'currencies',
-        router: true
-      }, {
-        icon: 'pages',
-        text: 'Pages',
-        href: 'pages',
-        router: true
-      }, {
-        action: 'local_activity',
-        title: 'Properties',
-        isGroupHeader: true,
-        items: [{
-          icon: 'domain',
-          text: 'List',
-          href: 'propertiesList',
-          router: true
-        }, {
-          icon: 'domain',
-          text: 'New Property',
-          href: 'newProperty',
-          router: true
-        }]
-      }, {
-        icon: 'domain',
-        text: 'Properties',
-        href: 'properties',
-        router: true
-      }, {
-        icon: 'contacts',
-        text: 'Contacts',
-        href: 'contacts',
-        router: true
-      }, {
-        icon: 'contacts',
-        text: 'Create contact',
-        href: 'CreateContact',
-        router: true
-      }],
       miniVariant: false,
       right: true,
       rightDrawer: false,

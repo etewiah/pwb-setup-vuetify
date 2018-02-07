@@ -1,4 +1,15 @@
 export default {
+  "propertySections": {
+    "general": "General",
+    "location": "Situación",
+    // "description": "descripción",
+    "text": "Texto",
+    "extras": "Extras",
+    "photos": "Fotos",
+    "sale": "Venta / Alquiler",
+    "owner": "Proprietario"
+  },
+  // above not on server
   "properties": "Properties",
   "cards": {
     "website": "Website",

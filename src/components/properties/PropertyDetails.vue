@@ -22,7 +22,7 @@ export default {
   computed: {
     propertyDetailsComponent() {
       let currentTabName = this.$route.params["tabName"]
-      let currentPropertyTab = this.findBy(this.$store.state.propertyTabs, currentTabName, 'tabValue')
+      let currentPropertyTab = this.findBy(this.$store.state.navigationStore.propertyTabs, currentTabName, 'tabValue')
       return currentPropertyTab[0].componentName
     },
     currentProperty() {
