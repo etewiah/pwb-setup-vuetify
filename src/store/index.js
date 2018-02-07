@@ -3,12 +3,14 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import propertiesStore from './modules/properties'
 import navigationStore from './modules/navigation'
+import pagesStore from './modules/pages'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
     propertiesStore,
-    navigationStore
+    navigationStore,
+    pagesStore
   },
   state: {
     newProperty: "",

@@ -6,8 +6,7 @@
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-
-dsfsdfdsdsdfds
+        details: {{ currentPage.page_title_en }} dsfsdfdsdsdfds
       </v-flex>
     </v-layout>
     <v-layout row wrap class="mt-2">
@@ -26,17 +25,19 @@ export default {
     }
   },
   computed: {
-    // currentProperty() {
-    //   debugger
-    //   return this.$store.state.propertiesStore.currentProperty
-    // }
+    currentPage() {
+      return this.$store.state.pagesStore.currentPage
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.$store.dispatch('loadPage', to.params.pageName)
+    }
   },
   mounted: function() {
-    debugger
-    this.$store.dispatch('loadProperty', this.$route.params["pageName"])
+    this.$store.dispatch('loadPage', this.$route.params["pageName"])
   },
-  methods: {
-  }
+  methods: {}
 }
 
 </script>
