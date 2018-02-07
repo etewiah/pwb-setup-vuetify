@@ -1,8 +1,8 @@
 <template>
-  <v-list>
+  <v-list expand>
     <template v-for="(item, index) in mainNavItems">
       <template v-if="item.isGroupHeader">
-        <v-list-group :value="item.active" v-bind:key="item.title">
+        <v-list-group :value="true" expand v-bind:key="item.title">
           <v-list-tile slot="item" @click="">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
@@ -15,7 +15,7 @@
               <v-icon>keyboard_arrow_down</v-icon>
             </v-list-tile-action>
           </v-list-tile>
-          <v-list-tile v-for="subItem in item.childItems" v-bind:key="subItem.title" :href="subItem.href" :to="{name: subItem.href}">
+          <v-list-tile v-for="subItem in item.childItems" v-bind:key="subItem.title" :href="subItem.href" :to="{name: subItem.href}" expand>
             <v-list-tile-action>
               <v-icon light v-html="subItem.icon"></v-icon>
             </v-list-tile-action>
@@ -59,7 +59,7 @@ export default {
         adminPageLinks.forEach(function(page) {
           console.log(page)
           let pageNav = {}
-          pageNav.href = "propertiesList"
+          pageNav.href = "site-pages-list"
           pageNav.text = page[linkTitleKey]
           pageNav.icon = "domain"
           pageNav.router = true
