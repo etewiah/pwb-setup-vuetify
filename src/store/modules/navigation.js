@@ -62,8 +62,8 @@ const state = {
       }]
     }, {
       icon: "pages",
-      tabTitleKey: "adminSections.pages",
-      tabRoute: "admin.pages",
+      tabTitleKey: "site pages",
+      // tabRoute: "admin.pages",
       // subMenuItems: [],
       // title: 'Attractions',
       isGroupHeader: true,
@@ -90,8 +90,8 @@ const state = {
       router: true
     }, {
       icon: 'pages',
-      tabTitleKey: 'Pages',
-      href: 'pages',
+      tabTitleKey: 'Admin Pages',
+      href: 'admin-pages-list',
       router: true
     }, {
       icon: 'contacts',

@@ -15,7 +15,7 @@
               <v-icon>keyboard_arrow_down</v-icon>
             </v-list-tile-action>
           </v-list-tile>
-          <v-list-tile v-for="subItem in item.childItems" v-bind:key="subItem.title" :href="subItem.href" :to="{name: subItem.href}" expand>
+          <v-list-tile v-for="subItem in item.childItems" v-bind:key="subItem.title" :href="subItem.href" :to="{name: subItem.href, params: subItem.params}" expand>
             <v-list-tile-action>
               <v-icon light v-html="subItem.icon"></v-icon>
             </v-list-tile-action>
@@ -59,10 +59,11 @@ export default {
         adminPageLinks.forEach(function(page) {
           console.log(page)
           let pageNav = {}
-          pageNav.href = "site-pages-list"
+          pageNav.href = "site-page-details"
           pageNav.text = page[linkTitleKey]
           pageNav.icon = "domain"
           pageNav.router = true
+          pageNav.params = {pageName: page["page_slug"]}
           pagesNav.childItems.push(pageNav)
           // debugger
         })
