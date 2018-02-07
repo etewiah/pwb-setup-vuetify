@@ -10,24 +10,42 @@ const state = {
       tabRoute: "admin.setup"
       // tabRoute: "admin.inicio"
     }, {
-      icon: "fa fa-building-o",
       tabTitleKey: "adminSections.properties",
       tabRoute: "admin.propiedades",
-      subMenuItems: [{
-        icon: "fa fa-list",
-        tabTitleKey: "adminSections.list",
-        tabRoute: "admin.propiedades.list.default"
-        // tabRoute: "admin.inicio"
+      icon: 'domain',
+      text: 'Properties',
+      href: 'properties',
+      router: true,
+      // subMenuItems: [{
+      //   icon: "fa fa-list",
+      //   tabTitleKey: "adminSections.list",
+      //   tabRoute: "admin.propiedades.list.default"
+      // }, {
+      //   icon: "fa fa-tags",
+      //   tabTitleKey: "adminSections.labels",
+      //   tabRoute: "admin.propiedades.settings"
+      // }, {
+      //   icon: "fa fa-plus",
+      //   tabTitleKey: "newProperty",
+      //   tabRoute: "admin.propiedades.nuevo"
+      // }, ]
+    },
+    {
+      icon: 'domain',
+      title: 'Properties',
+      tabTitleKey: "adminSections.properties",
+      isGroupHeader: true,
+      childItems: [{
+        icon: 'domain',
+        text: 'List',
+        href: 'propertiesList',
+        router: true
       }, {
-        icon: "fa fa-tags",
-        tabTitleKey: "adminSections.labels",
-        tabRoute: "admin.propiedades.settings"
-      }, {
-        icon: "fa fa-plus",
-        tabTitleKey: "newProperty",
-        tabRoute: "admin.propiedades.nuevo"
-        // tabRoute: "admin.inicio"
-      }, ]
+        icon: 'domain',
+        text: 'New Property',
+        href: 'newProperty',
+        router: true
+      }]
     },
     {
       icon: "fa fa-desktop",
@@ -43,10 +61,15 @@ const state = {
         tabRoute: "admin.website.details.footer"
       }]
     }, {
-      icon: "fa fa-newspaper-o",
+      icon: "pages",
       tabTitleKey: "adminSections.pages",
       tabRoute: "admin.pages",
-      subMenuItems: []
+      // subMenuItems: [],
+      // title: 'Attractions',
+      isGroupHeader: true,
+      childItems: [
+      ]
+
     }, {
       icon: "fa fa-exchange",
       tabTitleKey: "adminSections.import",
@@ -56,20 +79,10 @@ const state = {
       tabTitleKey: "adminSections.agencyDetails",
       tabRoute: "admin.agency"
     }, {
-      icon: "fa fa-info-circle",
+      icon: "contacts",
       tabTitleKey: "adminSections.about",
       href: 'about',
       router: true
-
-    },
-
-    {
-      action: 'local_activity',
-      title: 'Attractions',
-      isGroupHeader: true,
-      items: [
-        { title: 'List Item' }
-      ]
     }, {
       icon: 'money',
       text: 'Currencies',
@@ -77,37 +90,17 @@ const state = {
       router: true
     }, {
       icon: 'pages',
-      text: 'Pages',
+      tabTitleKey: 'Pages',
       href: 'pages',
       router: true
     }, {
-      action: 'local_activity',
-      title: 'Properties',
-      isGroupHeader: true,
-      items: [{
-        icon: 'domain',
-        text: 'List',
-        href: 'propertiesList',
-        router: true
-      }, {
-        icon: 'domain',
-        text: 'New Property',
-        href: 'newProperty',
-        router: true
-      }]
-    }, {
-      icon: 'domain',
-      text: 'Properties',
-      href: 'properties',
-      router: true
-    }, {
       icon: 'contacts',
-      text: 'Contacts',
+      tabTitleKey: 'Contacts',
       href: 'contacts',
       router: true
     }, {
       icon: 'contacts',
-      text: 'Create contact',
+      tabTitleKey: 'Create contact',
       href: 'CreateContact',
       router: true
     }

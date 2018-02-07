@@ -1,50 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app>
-      <v-list>
-        <template v-for="(item, index) in mainNavItems">
-          <template v-if="item.isGroupHeader">
-            <v-list-group :value="item.active" v-bind:key="item.title">
-              <v-list-tile slot="item" @click="">
-                <v-list-tile-action>
-                  <v-icon>{{ item.action }}</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                  <v-list-tile-title>{{ item.title }} {{ $t(item.tabTitleKey) }}
-                  </v-list-tile-title>
-                </v-list-tile-content>
-                <v-list-tile-action>
-                  <v-icon>keyboard_arrow_down</v-icon>
-                </v-list-tile-action>
-              </v-list-tile>
-              <v-list-tile v-for="subItem in item.items" v-bind:key="subItem.title" :href="subItem.href" :to="{name: subItem.href}">
-                <v-list-tile-action>
-                  <v-icon light v-html="subItem.icon"></v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                  <v-list-tile-title v-html="subItem.text"></v-list-tile-title>
-                </v-list-tile-content>
-                <v-list-tile-content>
-                  <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-                </v-list-tile-content>
-                <v-list-tile-action>
-                  <v-icon>{{ subItem.action }}</v-icon>
-                </v-list-tile-action>
-              </v-list-tile>
-            </v-list-group>
-          </template>
-          <v-list-tile v-else :href="item.href" :to="{name: item.href}">
-            <v-list-tile-action>
-              <v-icon light v-html="item.icon"></v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>
-                {{ item.title }} {{ $t(item.tabTitleKey) }}
-              </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </template>
-      </v-list>
+      <MainNav></MainNav>
     </v-navigation-drawer>
     <v-toolbar app :clipped-left="clipped" fixed dark :class="theme">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -95,12 +52,16 @@
   </v-app>
 </template>
 <script>
+import MainNav from '@/components/MainNav'
 import axios from 'axios'
 export default {
+  components: {
+    MainNav,
+  },
   computed: {
-    mainNavItems() {
-      return this.$store.state.navigationStore.mainNavItems
-    },
+    // mainNavItems() {
+    //   return this.$store.state.navigationStore.mainNavItems
+    // },
   },
   data() {
     return {
