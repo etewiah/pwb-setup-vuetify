@@ -4,13 +4,13 @@ import HelloWorld from '@/components/HelloWorld'
 import ContactDetails from '@/components/ContactDetails'
 import CreateContact from '@/components/contacts/CreateContact'
 import AdminPagesList from '@/pages/admin-pages/PagesList'
-import SitePageDetails from '@/pages/site-pages/PagesDetails'
+import SitePageDetails from '@/pages/site-pages/PageDetails'
 import CurrenciesList from '@/components/CurrenciesList'
 import PropertyDetails from '@/components/properties/PropertyDetails'
 import SingleProperty from '@/components/properties/SingleProperty'
 import NewProperty from '@/pages/properties/NewProperty'
-import PropertiesContainer from '@/pages/properties/PropertiesContainer'
 import PropertiesList from '@/pages/properties/PropertiesList'
+import GenericContainer from '@/pages/GenericContainer'
 
 
 Vue.use(Router)
@@ -48,7 +48,7 @@ export default new Router({
     }, {
       path: '/site-pages',
       name: 'site-pages-list',
-      component: AdminPagesList,
+      component: GenericContainer,
       children: [{
         path: ':pageName',
         name: 'site-page-details',
@@ -60,7 +60,7 @@ export default new Router({
       redirect: { name: 'propertiesList' }
     }, {
       path: '/properties/view',
-      component: PropertiesContainer,
+      component: GenericContainer,
       children: [{
         path: '',
         name: 'propertiesList',
