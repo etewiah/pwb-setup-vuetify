@@ -55,7 +55,8 @@
         <v-icon>remove</v-icon>
       </v-btn>
       {{ $t('Search') }}
-      {{ $t('message.hello', { msg: 'hello' }) }}
+
+       {{ $t('pages.aboutUs') }}
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-menu offset-y>
@@ -70,9 +71,6 @@
           </v-list-tile>
         </v-list>
       </v-menu>
-
-
-
       <v-menu offset-y>
         <v-btn icon dark slot="activator">
           <v-icon dark>format_paint</v-icon>
@@ -103,7 +101,7 @@ export default {
     return {
       theme: 'primary',
       mini: false,
-      locales: ['en-US', 'zh-CN', 'es-ES'],
+      locales: ['en-US', 'zh-CN', 'es'],
       colors: ['blue', 'green', 'purple', 'red'],
       clipped: false,
       drawer: true,
@@ -171,6 +169,20 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch('loadSetupInfo')
+    // axios.get('/api/v1/translations/list/en', {
+    //   headers: {
+    //     'Content-Type': 'application/vnd.api+json',
+    //     'Accept': 'application/vnd.api+json'
+    //   }
+    // }).then((response) => {
+    //   console.log(axios)
+    //   debugger
+    //   self.mainVm.$i18n.messages = response.data
+    //   // commit('setProperties', { result: response.data })
+    // }, (err) => {
+    //   console.log(err)
+    // })
+
   },
 }
 

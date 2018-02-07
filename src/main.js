@@ -53,7 +53,7 @@ Vue.use(Vuetify, { theme: {
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+global.mainVm = new Vue({
   el: '#app',
   router,
   axios,
