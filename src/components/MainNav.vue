@@ -59,7 +59,7 @@ export default {
         adminPageLinks.forEach(function(page) {
           console.log(page)
           let pageNav = {}
-          pageNav.href = "site-page-details"
+          pageNav.href = "site-page-details-default"
           pageNav.text = page[linkTitleKey]
           pageNav.icon = "domain"
           pageNav.router = true

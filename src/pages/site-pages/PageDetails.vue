@@ -1,5 +1,19 @@
 <template>
   <v-container>
+    <v-tabs>
+      <v-tabs-bar class="cyan" dark>
+        <template v-for="(tab, index) in pageTabs">
+          <v-tabs-item :to="{name: 'site-page-details', params: {tabName: tab.page_part_key}}" ripple>
+            {{ $t(tab.editor_setup.tabTitleKey) }} {{tab.page_part_key}}
+          </v-tabs-item>
+        </template>
+        <v-tabs-slider color="yellow"></v-tabs-slider>
+      </v-tabs-bar>
+      <v-tabs-items>
+      </v-tabs-items>
+    </v-tabs>
+
+
     <v-layout>
       <v-flex xs12 class="text-xs-center">
       </v-flex>
@@ -25,6 +39,9 @@ export default {
     }
   },
   computed: {
+    pageTabs() {
+      return this.$store.state.pagesStore.currentPage.page_parts
+    },
     currentPage() {
       return this.$store.state.pagesStore.currentPage
     }

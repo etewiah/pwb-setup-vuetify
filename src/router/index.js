@@ -46,14 +46,26 @@ export default new Router({
         detail: true
       }
     }, {
-      path: '/site-pages',
-      name: 'site-pages-list',
+      path: '/site-pages/:pageName',
+      name: 'site-page',
       component: GenericContainer,
+      // redirect: { name: 'single-page-tab' },
       children: [{
-        path: ':pageName',
-        name: 'site-page-details',
-        component: SitePageDetails
-      }]
+          path: '',
+          name: 'site-page-details-default',
+          component: SitePageDetails,
+        },
+        {
+          path: ':tabName',
+          name: 'site-page-details',
+          component: SitePageDetails,
+          // children: [{
+          //   name: 'single-page-tab',
+          //   path: ':tabName',
+          //   component: SitePageDetails
+          // }]
+        }
+      ]
     }, {
       path: '/properties',
       name: 'properties',
