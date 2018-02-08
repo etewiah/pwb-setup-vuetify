@@ -12,6 +12,20 @@ const getters = {}
 
 // actions
 const actions = {
+  updatePage({ commit, state }) {
+    let apiUrl = '/api/v1/pages'
+     // + state.currentPage.slug
+    axios.put(apiUrl, {
+      page: state.currentPage
+    }, {
+      headers: {
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json'
+      }
+    }).then(response => {
+      commit('setCurrentPage', { result: response.data })
+    })
+  },
   loadPage: function({ commit }, pageId) {
     let apiUrl = '/api/v1/pages/' + pageId
     axios.get(apiUrl, {

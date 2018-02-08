@@ -2,9 +2,12 @@
   <v-container>
     <v-tabs>
       <v-tabs-bar class="cyan" dark>
+        <v-tabs-item :to="{name: 'site-page-details', params: {tabName: 'settings'}}" ripple>
+          {{ $t("pageSections.pageTitle") }}
+        </v-tabs-item>
         <template v-for="(tab, index) in pageTabs">
           <v-tabs-item :to="{name: 'site-page-details', params: {tabName: tab.page_part_key}}" ripple>
-            {{ $t(tab.editor_setup.tabTitleKey) }} {{tab.page_part_key}}
+            {{ $t(tab.editor_setup.tabTitleKey) }}
           </v-tabs-item>
         </template>
         <v-tabs-slider color="yellow"></v-tabs-slider>
@@ -12,15 +15,9 @@
       <v-tabs-items>
       </v-tabs-items>
     </v-tabs>
-
-
     <v-layout>
       <v-flex xs12 class="text-xs-center">
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap class="mt-2">
-      <v-flex xs12>
-        details: {{ currentPage.page_title_en }} dsfsdfdsdsdfds
+        <component :is="pageDetailsComponent" v-bind:currentPage="currentPage"></component>
       </v-flex>
     </v-layout>
     <v-layout row wrap class="mt-2">
@@ -31,6 +28,7 @@
   </v-container>
 </template>
 <script>
+import PageSettings from '@/components/pages/PageSettings'
 export default {
   data() {
     return {
@@ -38,7 +36,18 @@ export default {
       loading: true
     }
   },
+  components: {
+    PageSettings,
+  },
+
   computed: {
+    pageDetailsComponent() {
+      // let currentTabName = this.$route.params["tabName"]
+      // let currentPropertyTab = this.findBy(this.$store.state.navigationStore.propertyTabs, currentTabName, 'tabValue')
+      return "PageSettings"
+      // currentPropertyTab[0].componentName
+    },
+
     pageTabs() {
       return this.$store.state.pagesStore.currentPage.page_parts
     },
