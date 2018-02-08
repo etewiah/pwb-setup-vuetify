@@ -10,6 +10,7 @@
 import GeneralPropertyDetails from '@/components/properties/details/GeneralPropertyDetails'
 import TextPropertyDetails from '@/components/properties/details/TextPropertyDetails'
 import ExtrasPropertyDetails from '@/components/properties/details/ExtrasPropertyDetails'
+import SalePropertyDetails from '@/components/properties/details/SalePropertyDetails'
 export default {
   data() {
     return {}
@@ -17,7 +18,8 @@ export default {
   components: {
     GeneralPropertyDetails,
     TextPropertyDetails,
-    ExtrasPropertyDetails
+    ExtrasPropertyDetails,
+    SalePropertyDetails,
   },
   computed: {
     propertyDetailsComponent() {

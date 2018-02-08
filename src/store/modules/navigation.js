@@ -116,7 +116,7 @@ const state = {
   }, {
     tabValue: "venta",
     tabTitleKey: "propertySections.sale",
-    componentName: "GeneralPropertyDetails",
+    componentName: "SalePropertyDetails",
   }, {
     tabValue: "situacion",
     tabTitleKey: "propertySections.location",

@@ -76,8 +76,8 @@ export default {
     }
   },
   watch: {
-    '$route': 'fetch',
-    'model': 'updateFields'
+    // '$route': 'fetch',
+    // 'model': 'updateFields'
   },
   methods: {
     getFieldError(fieldName) {
@@ -91,16 +91,16 @@ export default {
     updateFields() {
 
     },
-    fetch() {
-      this.$http.get(`settings/form`, {
-        params: { id: this.id }
-      }).then(({ data }) => {
-        this.model = data.model
-        this.fields = data.fields
-        this.rules = data.rules
-        this.messages = data.messages
-      })
-    },
+    // fetch() {
+    //   this.$http.get(`settings/form`, {
+    //     params: { id: this.id }
+    //   }).then(({ data }) => {
+    //     this.model = data.model
+    //     this.fields = data.fields
+    //     this.rules = data.rules
+    //     this.messages = data.messages
+    //   })
+    // },
     onSubmit() {
 
     },
