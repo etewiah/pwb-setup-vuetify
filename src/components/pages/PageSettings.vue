@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    details: {{ currentPage.page_title_en }} dsfsdfdsdsdfds
     <v-layout row>
       <v-flex xs6>
         <form @submit.prevent="onUpdatePageSettings">

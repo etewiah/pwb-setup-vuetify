@@ -1,6 +1,5 @@
 <template>
   <v-container>
-
     <v-tabs>
       <v-tabs-bar class="cyan" dark>
         <template v-for="(tab, index) in propertyTabs">
@@ -13,11 +12,9 @@
       <v-tabs-items>
       </v-tabs-items>
     </v-tabs>
-
     <v-layout row wrap class="mt-2">
       <v-flex xs12 class="text-xs-center">
-      <router-view/>
-
+        <router-view/>
       </v-flex>
     </v-layout>
   </v-container>

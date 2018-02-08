@@ -2,7 +2,7 @@
   <v-container>
     <!-- basic -->
     <keep-alive>
-      <component :is="propertyDetailsComponent" v-bind:property="currentProperty"></component>
+      <component :is="propertyDetailsComponent" v-bind:property="currentProperty" v-bind:currentProperty="currentProperty"></component>
     </keep-alive>
   </v-container>
 </template>
