@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-tabs>
       <v-tabs-bar class="cyan" dark>
         <template v-for="(tab, index) in propertyTabs">
@@ -17,7 +17,7 @@
         <router-view/>
       </v-flex>
     </v-layout>
-  </v-container>
+  </div>
 </template>
 <script>
 export default {

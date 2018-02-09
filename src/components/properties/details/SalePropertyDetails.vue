@@ -2,18 +2,21 @@
   <v-layout row>
     <v-flex xs12>
       <form @submit.prevent="onUpdateProperty">
-        <v-layout row>
-          <v-flex xs4 sm4>
+        <v-layout wrap row>
+          <v-flex xs12 sm4>
+            <h3 class="text-xs-left mb-3">{{$t("propertyGeneralSections.sale") }}</h3>
             <template v-for="(fieldDetails) in saleInputFields">
               <FieldResolver :fieldDetails="fieldDetails" v-bind:resourceModel="currentProperty"></FieldResolver>
             </template>
           </v-flex>
-          <v-flex xs4 sm4>
+          <v-flex xs12 sm4>
+            <h3 class="text-xs-left mb-3">{{$t("propertyGeneralSections.longtermRental") }}</h3>
             <template v-for="(fieldDetails) in longTermRentalInputFields">
               <FieldResolver :fieldDetails="fieldDetails" v-bind:resourceModel="currentProperty"></FieldResolver>
             </template>
           </v-flex>
-          <v-flex xs4 sm4>
+          <v-flex xs12 sm4>
+            <h3 class="text-xs-left mb-3">{{$t("propertyGeneralSections.seasonalRental") }}</h3>
             <template v-for="(fieldDetails) in shortTermRentalInputFields">
               <FieldResolver :fieldDetails="fieldDetails" v-bind:resourceModel="currentProperty"></FieldResolver>
             </template>
@@ -35,6 +38,24 @@ export default {
     FieldResolver
   },
   props: ["currentProperty"],
+  watch: {
+    currentProperty: {
+      handler: function(after, before) {
+        // Return the object that changed
+        var vm = this;
+        // let changed = after.filter(function(p, idx) {
+        //   return Object.keys(p).some(function(prop) {
+        //     return p[prop] !== vm.$data.oldPeople[idx][prop];
+        //   })
+        // })
+        // // Log it
+        // vm.setValue();
+        // console.log(changed)
+        debugger;
+
+      },
+    }
+  },
   data() {
     return {
       longTermRentalInputFields: [{
