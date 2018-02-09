@@ -1,7 +1,7 @@
 <template>
   <v-layout row>
     <v-flex xs12>
-      <form @submit.prevent="onUpdateProperty">
+      <form @submit.prevent="onUpdateProperty" @change="changeHandler">
         <v-layout wrap row>
           <v-flex xs12 sm4>
             <h3 class="text-xs-left mb-3">{{$t("propertyGeneralSections.sale") }}</h3>
@@ -33,6 +33,7 @@
 </template>
 <script>
 import FieldResolver from '@/components/form-fields/FieldResolver'
+import { required, minLength } from 'vuelidate/lib/validators'
 export default {
   components: {
     FieldResolver
@@ -51,9 +52,16 @@ export default {
         // // Log it
         // vm.setValue();
         // console.log(changed)
-        debugger;
+        // debugger;
 
       },
+    }
+  },
+  validations: {
+    currentProperty: {
+      price_rental_monthly_current_cents: {
+        required
+      }
     }
   },
   data() {
@@ -186,7 +194,11 @@ export default {
   // },
   methods: {
     onUpdateProperty() {
-      this.$store.dispatch('updateProperty')
+      debugger
+      // this.$store.dispatch('updateProperty')
+    },
+    changeHandler(){
+      debugger
     }
   }
 }
