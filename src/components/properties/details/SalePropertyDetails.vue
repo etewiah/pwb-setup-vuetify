@@ -1,7 +1,7 @@
 <template>
   <v-layout row>
     <v-flex xs12>
-      <form @submit.prevent="onUpdateProperty" @change="changeHandler">
+      <form @submit.prevent="onUpdateProperty">
         <v-layout wrap row>
           <v-flex xs12 sm4>
             <h3 class="text-xs-left mb-3">{{$t("propertyGeneralSections.sale") }}</h3>
@@ -40,22 +40,21 @@ export default {
   },
   props: ["currentProperty"],
   watch: {
-    currentProperty: {
-      handler: function(after, before) {
-        // Return the object that changed
-        var vm = this;
-        // let changed = after.filter(function(p, idx) {
-        //   return Object.keys(p).some(function(prop) {
-        //     return p[prop] !== vm.$data.oldPeople[idx][prop];
-        //   })
-        // })
-        // // Log it
-        // vm.setValue();
-        // console.log(changed)
-        // debugger;
-
-      },
-    }
+    // currentProperty: {
+    //   handler: function(after, before) {
+    //     // Return the object that changed
+    //     var vm = this;
+    //     // let changed = after.filter(function(p, idx) {
+    //     //   return Object.keys(p).some(function(prop) {
+    //     //     return p[prop] !== vm.$data.oldPeople[idx][prop];
+    //     //   })
+    //     // })
+    //     // // Log it
+    //     // vm.setValue();
+    //     // console.log(changed)
+    //     // debugger;
+    //   },
+    // }
   },
   validations: {
     currentProperty: {
@@ -197,9 +196,9 @@ export default {
       debugger
       // this.$store.dispatch('updateProperty')
     },
-    changeHandler(){
-      debugger
-    }
+    // changeHandler(param1, param2, param3){
+    //   debugger
+    // }
   }
 }
 
