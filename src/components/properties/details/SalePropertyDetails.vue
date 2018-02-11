@@ -2,6 +2,12 @@
   <v-layout row>
     <v-flex xs12>
       <form @submit.prevent="onUpdateProperty">
+        <v-layout v-if="hasPendingChanges" row>
+          <v-flex xs12 sm12 offset-sm0>
+            <v-btn class="primary" type="submit">Update</v-btn>
+          </v-flex>
+        </v-layout>
+
         <v-layout wrap row>
           <v-flex xs12 sm4>
             <h3 class="text-xs-left mb-3">{{$t("propertyGeneralSections.sale") }}</h3>
@@ -77,6 +83,7 @@ export default {
         fieldName: "price_rental_monthly_current_cents",
         fieldType: "simpleInput",
         inputType: "number",
+        fieldDbType: "int",
         constraints: {
           inputValue: {
             numericality: {
@@ -91,6 +98,7 @@ export default {
         fieldName: "price_rental_monthly_original_cents",
         fieldType: "simpleInput",
         inputType: "number",
+        fieldDbType: "int",
         constraints: {
           inputValue: {
             numericality: {
@@ -112,6 +120,7 @@ export default {
         fieldName: "price_rental_monthly_low_season_cents",
         fieldType: "simpleInput",
         inputType: "number",
+        fieldDbType: "int",
         constraints: {
           inputValue: {
             numericality: {
@@ -126,6 +135,7 @@ export default {
         fieldName: "price_rental_monthly_standard_season_cents",
         fieldType: "simpleInput",
         inputType: "number",
+        fieldDbType: "int",
         constraints: {
           inputValue: {
             numericality: {
@@ -140,6 +150,7 @@ export default {
         fieldName: "priceRentalMonthlyHighSeasonCents",
         fieldType: "simpleInput",
         inputType: "number",
+        fieldDbType: "int",
         constraints: {
           inputValue: {
             numericality: {
@@ -161,6 +172,7 @@ export default {
         fieldName: "price_sale_current_cents",
         fieldType: "simpleInput",
         inputType: "number",
+        fieldDbType: "int",
         constraints: {
           inputValue: {
             numericality: {
@@ -175,6 +187,7 @@ export default {
         fieldName: "price_sale_original_cents",
         fieldType: "simpleInput",
         inputType: "number",
+        fieldDbType: "int",
         constraints: {
           inputValue: {
             numericality: {
@@ -186,8 +199,12 @@ export default {
       }, ],
     }
   },
-  // computed: {
-  // },
+  computed: {
+    hasPendingChanges: function() {
+      return this.$store.state.propertiesStore.hasPendingChanges
+      // return Object.keys(this.$store.state.propertiesStore.pendingChanges).length > 0;
+    }
+  },
   // mounted: function() {
   //   this.$store.dispatch('loadProperty', this.$route.params["id"])
   // },

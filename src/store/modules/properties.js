@@ -6,6 +6,8 @@ import axios from 'axios'
 const state = {
   all: [],
   properties: [],
+  pendingChanges: {},
+  hasPendingChanges: false,
   currentProperty: {
     attributes: {}
   },
@@ -70,13 +72,35 @@ const actions = {
       commit('setNewProperty', property)
     })
   },
+  updatePendingChanges({ commit, state }, fieldDetails) {
+    // let pendingChange = {}
+    let       newValue = fieldDetails.newValue
+    let fieldHasChanged = false
+    if (fieldDetails.fieldDbType === "int") {
+      newValue = parseInt(fieldDetails.newValue)
+      // fieldHasChanged = (parseInt(fieldDetails.newValue) !== state.currentProperty[fieldDetails.fieldName])
+    } 
+    fieldHasChanged = (newValue !== state.currentProperty[fieldDetails.fieldName])
+    debugger
+    if (fieldHasChanged) {
+      state.pendingChanges[fieldDetails.fieldName] = fieldDetails.newValue
+      // pendingChange[fieldDetails.fieldName] = fieldDetails.newValue
+      // state.pendingChanges.push(pendingChange)
+    } else {
+      delete state.pendingChanges[fieldDetails.fieldName]
+    }
+    commit('setHasPendingChanges', Object.keys(state.pendingChanges).length > 0)
+  },
 }
 
 // mutations
 const mutations = {
-  setNewProperty(state, todoObject) {
-    state.todos.push(todoObject)
+  setHasPendingChanges: (state, result) => {
+    state.hasPendingChanges = result
   },
+  // setNewProperty(state, todoObject) {
+  //   state.todos.push(todoObject)
+  // },
   clearNewProperty(state) {
     state.newProperty = ''
   },
